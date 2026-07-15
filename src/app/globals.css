@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* ---------- Money Autopilot design tokens ----------
+   Light is the primary theme (matches the approved mockup);
+   dark derives from the same petrol-teal identity. */
+
+:root {
+  --surface: #fcfcfb;
+  --card: #ffffff;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-3: #898781;
+  --hairline: #e9e8e3;
+  --grid: #e1e0d9;
+  --brand: #0e5f58;
+  --brand-soft: #e3efed;
+  --brand-border: #cfe2df;
+  --brand-ink: #0a4640;
+  --good: #006300;
+  --good-soft: #e2f2e2;
+  --warn: #8a5a00;
+  --warn-soft: #fdf1d7;
+  --serious: #9c3d1c;
+  --serious-soft: #fbe7dd;
+  --danger: #c23b2e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: #111413;
+    --card: #191d1c;
+    --ink: #f2f4f3;
+    --ink-2: #b3bcba;
+    --ink-3: #7d8a88;
+    --hairline: #272c2b;
+    --grid: #2d3331;
+    --brand: #5cc0b4;
+    --brand-soft: #14312d;
+    --brand-border: #24534d;
+    --brand-ink: #bfe5df;
+    --good: #4cc27f;
+    --good-soft: #15301f;
+    --warn: #e0b25c;
+    --warn-soft: #362b12;
+    --serious: #e08a63;
+    --serious-soft: #371f13;
+    --danger: #e66757;
+  }
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-hairline: var(--hairline);
+  --color-grid: var(--grid);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-border: var(--brand-border);
+  --color-brand-ink: var(--brand-ink);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-serious: var(--serious);
+  --color-serious-soft: var(--serious-soft);
+  --color-danger: var(--danger);
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  background: var(--surface);
+}
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* iOS PWA: never rubber-band a horizontal scroll */
+  overflow-x: hidden;
+}
+
+/* iOS safe areas (Dynamic Island, home indicator) */
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* number columns align */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
