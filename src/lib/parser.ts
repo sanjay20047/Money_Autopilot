@@ -32,9 +32,9 @@ const PROMO_RE =
 const BALANCE_ONLY_RE = /\b(avl|available)\s+(bal|balance)\b/i;
 
 const DEBIT_RE =
-  /\b(debited|debit(?:ed)?|spent|sent|paid|payment\s+of|purchase(?:\s+of)?|withdrawn|w\/d|deducted|txn\s+of)\b/i;
+  /\b(debited|debit(?:ed)?|spent|sent|paid|payment\s+of|purchase(?:\s+of)?|withdrawn|w\/d|deducted|txn\s+of|dr\.?\s+(?:from|by|to|with|in))\b/i;
 const CREDIT_RE =
-  /\b(credited|received|deposited|refund(?:ed)?|reversed|cashback\s+of)\b/i;
+  /\b(credited|received|deposited|refund(?:ed)?|reversed|cashback\s+of|cr\.?\s+(?:to|in|by|from|with))\b/i;
 
 // ---------- field extractors ----------
 
@@ -50,6 +50,8 @@ const ACCOUNT_RE =
 // merchant patterns, tried in order — first match wins
 const MERCHANT_PATTERNS: RegExp[] = [
   /\bto\s+vpa\s+([a-z0-9._-]+)@[a-z]+/i, // to VPA swiggy.upi@icici
+  /\bcr\.?\s+to\s+([a-z0-9 @._'-]{2,40}?)(?:\s+on\b|\s+ref|\s+via\b|[.,;]|$)/i, // "Dr. from A/C x and Cr. to MERCHANT"
+  /\bcr\.?\s+in\s+(?:a\/c\s+)?[x*\d]+\s+from\s+([a-z0-9 @._'-]{2,40}?)(?:\s+on\b|\s+ref|[.,;]|$)/i, // credit: Cr. in A/C xx from SENDER
   /\btrf\s+to\s+([a-z0-9 &._'-]{2,40}?)(?:\s+ref|\s+on\b|\.|$)/i, // SBI: trf to SWIGGY
   /\bat\s+([a-z0-9 &._'*-]{2,40}?)\s+on\s/i, // spent ... at AMAZON on
   /\bto\s+([a-z0-9 &._'-]{2,40}?)\s+on\s+\d/i, // Sent ... To Merchant On 14/07
